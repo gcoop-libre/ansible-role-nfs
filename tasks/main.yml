@@ -1,0 +1,25 @@
+---
+- name: Configure /etc/default/nfs-common
+  lineinfile:
+    dest: /etc/default/nfs-common
+    regexp: '^STATDOPTS='
+    line: 'STATDOPTS="--port {{ nfs_random_ports.nfs_statd }} --outgoing-port {{ nfs_random_ports.nfs_statd_bc }}"'
+    state: present
+  notify: Restart NFS
+
+- name: Configure /etc/default/nfs-kernel-server
+  lineinfile:
+    dest: /etc/default/nfs-kernel-server
+    regexp: '^RPCMOUNTDOPTS='
+    line: 'RPCMOUNTDOPTS="--manage-gids --port {{ nfs_random_ports.nfs_mountd }}"'
+    state: present
+  notify: Restart NFS
+
+- name: Configure lockd and NFS callback ports
+  template:
+    src: nfs-server.conf.j2
+    dest: /etc/modprobe.d/nfs-server.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart NFS
