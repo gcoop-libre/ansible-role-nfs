@@ -1,0 +1,9 @@
+---
+nfs_random_port: '63700'
+
+nfs_random_ports:
+  nfs_callback: "{{ (nfs_random_port | int + 0) }}"
+  nfs_lockd: "{{ (nfs_random_port | int + 1) }}"
+  nfs_mountd: "{{ (nfs_random_port | int + 2) }}"
+  nfs_statd: "{{ (nfs_random_port | int + 3) }}"
+  nfs_statd_bc: "{{ (nfs_random_port | int + 4) }}"

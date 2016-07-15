@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+options lockd nlm_udpport={{ nfs_random_ports.nfs_lockd }} nlm_tcpport={{ nfs_random_ports.nfs_lockd }}
+options nfs callback_tcpport={{ nfs_random_ports.nfs_callback }}
+

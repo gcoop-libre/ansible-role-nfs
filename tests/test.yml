@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: gcoop-libre.nfs
+      nfs_exports:
+        - "/home {{ ansible_eth0.ipv4.network }}/24(rw,sync,no_root_squash)"
