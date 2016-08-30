@@ -5,7 +5,7 @@
     regexp: '^STATDOPTS='
     line: 'STATDOPTS="--port {{ nfs_random_ports.nfs_statd }} --outgoing-port {{ nfs_random_ports.nfs_statd_bc }}"'
     state: present
-  notify: Restart NFS
+  notify: restart nfs common
 
 - name: Configure /etc/default/nfs-kernel-server
   lineinfile:
@@ -13,7 +13,7 @@
     regexp: '^RPCMOUNTDOPTS='
     line: 'RPCMOUNTDOPTS="--manage-gids --port {{ nfs_random_ports.nfs_mountd }}"'
     state: present
-  notify: Restart NFS
+  notify: restart nfs daemon
 
 - name: Configure lockd and NFS callback ports
   template:
@@ -22,4 +22,4 @@
     owner: root
     group: root
     mode: '0644'
-  notify: Restart NFS
+  notify: restart nfs daemon
