@@ -1,5 +1,5 @@
 ---
-- name: Restart NFS
+- name: restart nfs daemon
   service:
-    name: "{{ nfs_server_daemon }}"
+    name: nfs-kernel-server
     state: restarted
