@@ -5,7 +5,7 @@
     regexp: '^STATDOPTS='
     line: 'STATDOPTS="--port {{ nfs_random_ports.nfs_statd }} --outgoing-port {{ nfs_random_ports.nfs_statd_bc }}"'
     state: present
-  notify: restart nfs common
+  notify: restart nfs daemon
 
 - name: Configure /etc/default/nfs-kernel-server
   lineinfile:

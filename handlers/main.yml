@@ -3,8 +3,3 @@
   service:
     name: nfs-kernel-server
     state: restarted
-
-- name: restart nfs common
-  service:
-    name: nfs-common
-    state: restarted
